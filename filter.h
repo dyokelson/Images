@@ -7,6 +7,7 @@ class Filter : public Source, public Sink
      public:
      Filter(void);
      virtual void Update();
+     bool alreadyUpdating = false;
 };
 
 class Mirror : public Filter {

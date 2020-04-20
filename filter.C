@@ -11,23 +11,28 @@ Filter::Filter(void)
 void Filter::Update()
 {
      char msg[1024];
-     if (input == GetOutput() || input2 == GetOutput()) {
-         char error[1024];
-         sprintf(error, "%s: Input and Output should be different", SourceName().c_str());
-         DataFlowException e(SourceName().c_str(), error);
+     if (alreadyUpdating) {
+         sprintf(msg, "%s: Loop Detected!", SourceName().c_str());
+         DataFlowException e(SourceName().c_str(), msg);
          throw e;
      }
+     if (input == GetOutput() || input2 == GetOutput()) {
+         sprintf(msg, "%s: Input and Output should be different", SourceName().c_str());
+         DataFlowException e(SourceName().c_str(), msg);
+         throw e;
+     }
+     alreadyUpdating = true;
      if (input) {
          sprintf(msg, "%s: about to update input1", SourceName().c_str());
          Logger::LogEvent(msg);
          this->input->Update();
      }
-
      if (this->input2) {
          sprintf(msg, "%s: about to update input2", SourceName().c_str());
          Logger::LogEvent(msg);
          this->input2->Update();
      }
+     alreadyUpdating = false;
      sprintf(msg, "%s: about to execute", SourceName().c_str());
      Logger::LogEvent(msg);
      Execute();

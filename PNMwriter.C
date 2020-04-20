@@ -18,3 +18,7 @@ void PNMwriter::Write(char *filename)
 
      fclose(f_out);
 }
+/*std::string PNMwriter::SinkName() {
+     return "PNMwriter";
+}
+*/

@@ -1,6 +1,7 @@
 #include <sink.h>
 #include <stddef.h>
 #include <stdio.h>
+#include <logging.h>
 
 using namespace std;
 

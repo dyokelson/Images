@@ -11,9 +11,8 @@ class Sink
 
      public:
      Sink(void);
-     void SetInput(Image* input) {this->input = input;};
-     void SetInput2(Image* input2) {this->input2 = input2;};
-
+     void SetInput(Image* inputImage){this->input = inputImage;};
+     void SetInput2(Image* input2Image){this->input2 = input2Image;};
 };
 
 #endif

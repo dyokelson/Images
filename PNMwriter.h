@@ -2,9 +2,9 @@
 
 class PNMwriter : public Sink
 {
-     
+
      public:
      PNMwriter(void);
      void Write(char *filename);
-
+     //std::string SinkName();
 };
